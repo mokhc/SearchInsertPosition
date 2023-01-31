@@ -1,0 +1,49 @@
+﻿<!--Test Program-->
+<!--Leetcode Problem 35-->
+<!--Trivial - What is needed to insert the javascript in the HTML document?-->
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Leetcode Problem 35</title>
+</head>
+<body>
+    <nav>The output is : <span id="out1"></span></nav>
+    <script>
+        //Runtime - 98.84%
+        var searchInsert = function (nums, target) {
+            let search = 0;
+            let low = 0;
+            let high = nums.length - 1;
+            let ret = 0;
+            while (high >= low) {
+                search = (high - low) + low / 2;
+                if (nums[search] == target) {
+                    //cout << "==" << endl;
+                    ret = search;
+                    break;
+                }
+                else if (target > nums[search]) {
+                    //cout << " > " << endl;
+                    low = search + 1;
+                    ret = low;
+                }
+                else if (target < nums[search]) {
+                    //cout << " < " << endl;
+                    high = search - 1;
+                    ret = high;
+                }
+            }
+            if (ret == -1) {
+                ret = 0;
+            }
+            return ret;
+        }
+        let nums = [1, 2, 7, 8, 15];
+        let target = 2;
+        let searchInsertDiv = document.getElementById("out1");
+        searchInsertDiv.innerHTML = searchInsert(nums, target);
+    </script>
+</body>
+</html>
